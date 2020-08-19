@@ -1,0 +1,22 @@
+body {
+    margin: 0px;
+    background-color: #0D262D;
+    text-align: center;
+    font-size: 20px;
+}
+
+.pagina{
+    margin: 0 300px;
+    background-color: rgb(233, 233, 224);
+}
+
+li {
+    display: block;
+}
+
+.capa {
+    display: inline;
+    margin: 0;
+    width: 1000px;
+    height: 200px;
+}
