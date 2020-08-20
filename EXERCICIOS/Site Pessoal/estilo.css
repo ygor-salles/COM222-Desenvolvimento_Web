@@ -1,22 +1,58 @@
-body {
-    margin: 0px;
-    background-color: #0D262D;
+.item1 { 
+    grid-area: header; 
+    background-image: url("images/bikde.jpg");
+    height: 300px;     
+}
+.item2 { 
+    grid-area: menu;
+    width: 350px;
+    
+}
+.item3 { 
+    grid-area: main;
+    padding-top: 100px;
+    background-color: white;
+
+}
+.item4 { 
+    grid-area: right;
+    width: 350px;
+}
+.item5 { 
+    grid-area: footer; 
+    background-color: white;
+}
+
+.grid-container {
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+      'header header header header'
+      'menu main main right'
+      'menu footer footer footer';
+      background-color: lightgray;
+    padding: 0px;
+}
+  
+.grid-container > div {
+    align-items: center;
     text-align: center;
     font-size: 20px;
 }
 
-.pagina{
-    margin: 0 300px;
-    background-color: rgb(233, 233, 224);
+.item2 > img {
+    position: sticky;
+    padding-top: 200px;
 }
 
 li {
     display: block;
 }
 
-.capa {
-    display: inline;
-    margin: 0;
-    width: 1000px;
-    height: 200px;
+.foto {
+    position: sticky;
+    margin-top: 150px;
+    border-radius: 250px;
+    width: 250px;
+    height: 250px;
 }
