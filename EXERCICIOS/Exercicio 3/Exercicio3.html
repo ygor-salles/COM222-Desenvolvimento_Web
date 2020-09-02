@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+
+<body>
+    <h1>Exercicio 3</h1>
+    <p>
+        Escreva um script que leia uma string e informe a maior
+        palavra contida na string.
+    </p>
+    <section>
+        <input type="button" value="processar" onclick="processar()">
+    </section>
+    <script>
+        function processar() {
+            let str = prompt('Digite uma frase: ')
+            const n = str.indexOf(' ')
+
+            document.write(n)
+        }
+    </script>
+</body>
+
+</html>

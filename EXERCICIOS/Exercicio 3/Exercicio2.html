@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+</head>
+
+<body>
+    <h1>Exercicio 2</h1>
+    <p>
+        Escreva um script que conte as ocorrências de uma 
+        substring dentro de uma string. A string e a substring
+        devem ser obtidas do usuário
+    </p>
+    <section>
+        <input type="button" value="Processar" onclick="processar()">
+    </section>
+    <script type="text/javascript">
+        function processar() {
+            let string = prompt('Digite a string: ')
+            let substring = prompt('Digite a substring: ')
+
+            const n = string.split(substring).length - 1
+            document.write(`A substring ocorre ${n} vez(es) na string`) 
+        }
+    </script>
+</body>
+
+</html>

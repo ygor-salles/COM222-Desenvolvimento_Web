@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+</head>
+
+<body>
+    <h1>Exercicio 1</h1>
+    <p>
+        Escreva um script que leia uma temperatura em Celsius, <br>
+        converta a mesma para Farenheit e exiba o resultado <br>
+    </p>
+    <section>
+        <input type="button" value="Processar" onclick="converteTemperatura()">
+    </section>
+    <script type="text/javascript">
+        function converteTemperatura() {
+            let celcius = prompt('Digite a temperatura em celcius: ')
+            celcius = parseFloat(celcius)
+
+            farenheit = celcius * 1.8 + 32
+            
+            document.write('<br>A Temperatura em farenheit é: ',farenheit)
+        }
+    </script>
+</body>
+
+</html>
