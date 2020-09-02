@@ -1,0 +1,194 @@
+<!doctype html>
+<title>Site Pessoal</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    #main {
+        display: flex;
+        flex: 1;
+    }
+
+    #main>article {
+        flex: 1;
+        font-size: 20px;
+    }
+
+    #main>nav,
+    #main>aside {
+        flex: 0 0 25vw;
+        background-color: lightgray;
+    }
+
+    #main>nav {
+        order: -1;
+    }
+
+    header,
+    footer,
+    nav,
+    aside {
+        padding: 1em;
+        text-align: center;
+    }
+
+    header {
+        background-image: url("images/ceuEstrelado.png");
+        height: 30vh;
+        margin: 0;
+    }
+
+    footer {
+        height: 10vh;
+        margin: 0;
+    }
+
+    header>img {
+        position: sticky;
+        margin-top: 10px;
+        border-radius: 250px;
+        width: 250px;
+        height: 250px;
+    }
+
+    .ps4 {
+        width: 200px;
+        height: 200px;
+    }
+
+    li {
+        display: block;
+    }
+
+    a {
+        text-align: center;
+    }
+
+    nav>a,
+    aside>a {
+        display: flex;
+        text-decoration: none;
+        background-color: rgb(221, 193, 188);
+        padding: 10px 100px;
+        box-shadow: 2px 2px 1px 1px #000;
+        font-size: 20px;
+    }
+
+    nav>a:hover,
+    aside>a:hover {
+        background-color: tomato;
+    }
+
+    article {
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    p::first-letter {
+        font-size: 30px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    #contato {
+        margin-top: 400px;
+    }
+
+    #contato a {
+        font-size: larger;
+        text-decoration: none;
+        padding: 30px;
+        color: navy;
+    }
+
+    address {
+        display: flex;
+        justify-content: flex-end;
+        padding: 50px 0 20px 0;
+    }
+
+    article a {
+        text-decoration: none;
+    }
+
+    article a:hover,
+    #contato a:hover{
+        font-size: x-large;
+    }
+</style>
+
+<body>
+    <header>
+        <img src="images/ygorSalles.jpg" alt="foto">
+    </header>
+    <div id="main">
+        <article id="inicio">
+            <h1>SITE PESSOAL YGOR SALLES</h1>
+            <h2>DADOS PESSOAIS</h2>
+            <ul>
+                <li>Ygor Salles Aniceto Carvalho</li>
+                <li>ygorsallesaniceto@gmail.com</li>
+                <li>(35)98409-2972</li>
+                <li>2017014382</li>
+            </ul>
+            <h2>INFORMAÇÕES ACADÊMICAS</h2>
+            <p>
+                Graduando Sistemas de informação na <br> Universidade Federal de Itajubá - <a
+                    href="https://unifei.edu.br/" target="_blanck">Unifei</a>
+            </p>
+            <h3>Diploma técnico</h3>
+            <ul>
+                <li>Técnico em Administração - <a href="https://www.mg.senac.br/Unidades/Paginas/itajuba.aspx"
+                        target="_blanck">Senac
+                        Itajubá</a></li>
+                <li>Técnico em Eletrônica - <a
+                        href="https://www.mg.gov.br/instituicao_unidade/cep-centro-de-educacao-profissional-de-itajuba"
+                        target="_blanck">CEP
+                        Itajubá</a></li>
+            </ul>
+            <p>
+                Para mais informações ou caso queira visualizar nas redes socias, <br>
+                entre em contato clicando no link abaixo: <br>
+                <a id="inicio" href="#contato">Contato</a>
+            </p>
+        </article>
+        <nav>
+            <h2>HOBBIES</h2>
+            <p style="text-align: justify;">
+                Gosto de praticar esportes quando possível, jogar futebol, sair aos fins de semana com amigos,
+                jogar games eletrênicos, dar um passeio de bike e navegar na internet buscando conhecimento e
+                informação.
+            </p>
+            <a href="https://www.corinthians.com.br/" target="_blanck">Futebol</a> <br>
+            <a href="https://meups.com.br/" target="_blanck">Games</a> <br>
+            <img class="ps4" src="images/ps4.webp" alt="ps4">
+        </nav>
+        <aside>
+            <h2>INTERESSES EM COMPUTAÇÃO</h2>
+            <a href="https://pt.wikipedia.org/wiki/Python" target="_blanck">Python</a> <br>
+            <a href="https://www.w3schools.com/js/" target="_blanck">JavaScript</a> <br>
+            <a href="https://pt.wikipedia.org/wiki/Java" target="_blanck">Java</a> <br>
+            <a href="https://pt.wikipedia.org/wiki/C_(linguagem_de_programa%C3%A7%C3%A3o)" target="_blanck">C</a> <br>
+            <a href="https://www.w3schools.com/html/" target="_black">HTML</a> <br>
+            <a href="https://www.w3schools.com/css/" target="_blanck">CSS</a> <br>
+            <a href="https://angular.io/" target="_blanck">Angular</a> <br>
+        </aside>
+    </div>
+    <footer>
+        <div id="contato">
+            <a href="https://pt-br.facebook.com/ygor.salles.37" target="_black">Facebook</a>
+            <a href="https://www.instagram.com/ygorsalles_aniceto/?hl=pt-br" target="_black">Instagram</a>
+            <a href="#inicio">Voltar</a>
+            <br>
+        </div>
+        <address>Feito em 27/08/2020</address>
+    </footer>
+</body>

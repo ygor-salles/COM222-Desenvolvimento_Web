@@ -1,0 +1,115 @@
+.item1 { 
+    grid-area: header; 
+    background-image: url("images/bikde.jpg");
+    height: 300px;     
+}
+.item2 { 
+    grid-area: menu;
+    width: 350px;
+}
+.item3 { 
+    grid-area: main;
+    padding-top: 100px;
+    background-color: white;
+
+}
+.item4 { 
+    grid-area: right;
+    width: 350px;
+}
+
+.item5 { 
+    grid-area: footer; 
+    background-color: white;
+    padding: 100px 0 50px 0;
+    margin-top: 1000px;
+    text-align: center;
+}
+
+.grid-container {
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+      'header header header header'
+      'menu main main right'
+      'footer footer footer footer';
+      background-color: lightgray;
+    padding: 0px;
+}
+  
+.grid-container > div {
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+}
+
+li {
+    display: block;
+}
+
+.item3 ul, .item3 p {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.foto {
+    position: sticky;
+    margin-top: 150px;
+    border-radius: 250px;
+    width: 250px;
+    height: 250px;
+}
+
+.item2 ul {
+    margin-left: 0;
+}
+
+.item2 ul li, .item4 ul li {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.item2 ul li a, .item4 ul li a {
+    display: flex;
+    text-decoration: none;
+    background-color: rgb(221, 193, 188);
+    padding: 10px 100px;
+    box-shadow: 2px 2px 1px 1px #000;
+    font-size: 20px;
+}
+
+.item2 ul li a:hover, .item4 ul li a:hover {
+    background-color: tomato
+}
+
+.item5 address {
+    float: right;
+}
+
+.ps4 {
+    width: 200px;
+    height: 200px;
+}
+
+a:hover {
+    font-size: xx-large;
+}
+
+.item5 a {
+    text-decoration: none;
+    padding: 30px;
+}
+
+.item5 a:hover {
+    color: navy;    
+}
+
+p::first-letter {
+    font-size: 30px;
+    color: navy;
+    font-weight: bold;
+}
+
+footer:hover, div:hover {
+    background-color: coral;
+}
