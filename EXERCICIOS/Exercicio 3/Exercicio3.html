@@ -18,10 +18,17 @@
     </section>
     <script>
         function processar() {
-            let str = prompt('Digite uma frase: ')
-            const n = str.indexOf(' ')
-
-            document.write(n)
+            const str = prompt('Digite uma frase: ')
+            let array = str.split(' ')
+            var maior = 0
+            var maiorPalavra = ''
+            for (let i=0; i<array.length; i++){
+                if (array[i].length > maior){
+                    maior = array[i].length
+                    maiorPalavra = array[i]
+                }
+            }
+            document.write(maiorPalavra)
         }
     </script>
 </body>
