@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 7</title>
+</head>
+
+<body>
+    <h1>Exercicio 7</h1>
+    <p>
+        As Organizações Tabajara resolveram dar um aumento de salário aos
+        seus colaboradores e lhe contrataram para desenvolver o programa que <br>
+        calculará os reajustes. Faça um programa que recebe o salário de um
+        colaborador e calcule reajuste segundo o seguinte critério, baseado no <br>
+        salário atual:
+    </p>
+    <ul>
+        <li>Salários até R$ 280,00 (incluindo): aumento de 20%</li>
+        <li>Salários entre R$ 280,00 e R$ 700,00: aumento de 15%</li>
+        <li>Salários entre R$ 700,00 e R$ 1500,00: aumento de 10%</li>
+        <li>Salários de R$ 1500,00 em diante: aumento de 5%</li>
+    </ul>
+    <p>
+        Após o aumento ser calculado, deverá ser informado: o salário antes do reajuste; o
+        percentual de aumento aplicado; o valor do aumento; o novo salário, após o
+        aumento.
+    </p>
+    <section>
+        <input type="button" value="processar" onclick="processar()">
+    </section>
+    <script type="text/javascript">
+        function processar() {
+            salario = prompt('Digite seu salário: ')
+            salario = parseFloat(salario)
+
+            if (salario <= 280){
+                reajuste = salario + salario * 0.20
+                console.log(reajuste)
+                percentual = 20
+                aumento = salario * 0.20
+            }
+            else if (salario > 280 && salario <= 700) {
+                reajuste = salario + salario * 0.15
+                console.log(reajuste)
+                percentual = 15
+                aumento = salario * 0.15
+            }
+            else if (salario > 700 && salario <= 1500) {
+                reajuste = salario + salario * 0.10
+                percentual = 10
+                aumento = salario * 0.10
+            }
+            else{
+                reajuste = salario + salario * 0.05
+                percentual = 5
+                aumento = salario * 0.05
+            }
+
+            document.write('<br>O salário antes do ajuste era de: $'+salario)
+            document.write('<br>O percentual de aumento aplicado foi de: '+percentual+'%')
+            document.write('<br>O valor de aumento foi de: $'+aumento)
+            document.write('<br>Seu salário atual após o reajuste é: $'+reajuste)
+        }
+    </script>
+</body>
+
+</html>

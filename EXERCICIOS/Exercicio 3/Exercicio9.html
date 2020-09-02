@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 9</title>
+</head>
+
+<body>
+    <h1>Exercicio 9</h1>
+    <p>
+        Leia valores numéricos e os coloque num array. A leitura termina quando
+        o valor 0 for digitado. Em seguida, calcule a média dos valores digitados <br>
+        e informe o usuário.
+    </p>
+    <input type="button" value="processar" onclick="processar()">
+    <script type="text/javascript">
+    function processar(){
+        var cont = 0
+        var soma = 0
+        var valor = prompt('Digite valor: ')
+        valor = parseFloat(valor)
+        while (valor != 0) {
+            cont += 1
+            soma += valor
+            valor = prompt('Digite valor: ')
+            valor = parseFloat(valor)
+            
+        } 
+        document.write('A média dos valores digitados é de: '+(soma/cont))
+    }
+    </script>
+</body>
+
+</html>

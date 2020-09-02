@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 4</title>
+</head>
+
+<body>
+    <h1>Exercicio 4</h1>
+    <p>
+        Escreva um script que informe a soma e o produto de um
+        array de inteiros informado pelo usuário.
+    </p>
+    <section>
+        <input type="button" value="Processar" onclick="processar()">
+    </section>
+    <script type="text/javascript">
+        function processar(){
+            var array = []
+            let n = prompt('Informe o tamanho do array: ')
+            var soma = 0
+            var produto = 1
+            for (let i=1; i<=n; i++) {
+                array[i] = prompt('Digite num: ')
+                soma += i
+                produto = produto * i
+            }
+
+            document.write('<br>A soma do array é: '+soma)
+            document.write('<br>O produto do array é: '+produto)
+        }
+    </script>
+</body>
+
+</html>
