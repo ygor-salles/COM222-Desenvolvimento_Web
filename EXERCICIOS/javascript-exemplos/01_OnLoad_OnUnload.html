@@ -1,0 +1,23 @@
+<html>
+<!–- form01.html -->
+
+   <head>
+      <title>Página Olá / Até logo</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <script type="text/javascript">
+         function Hello() {
+            globalName = prompt("Bem vindo a minha 	página. Qual é o seu nome?", "");
+         }
+
+         function Goodbye() {
+            alert("Até logo, " + globalName +
+               " volte em breve.");
+         }
+      </script>
+   </head>
+
+   <body onload="Hello();" onunload="Goodbye();">
+      <p>Um texto qualquer aparece na página.</p>
+   </body>
+
+</html>
