@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toy Program</title>
+  </head>
+  <body
+    style="
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      flex-direction: column;
+    "
+  >
+    <section>
+      <h1>Conversão de temperatura</h1>
+      <input type="text" name="Temp" id="temp" placeholder="Tempetura em ºC" />
+      <button onclick="convertTemp()">Converter</button>
+      <h2 id="result"></h2>
+    </section>
+    <section>
+      <h1>Substring</h1>
+      <input
+        type="text"
+        name="String"
+        id="string"
+        placeholder="Digite sua palavra ou frase"
+      />
+      <input
+        type="text"
+        name="String"
+        id="sub-string"
+        placeholder="Digite uma substring"
+      />
+      <button onclick="subString()">Contar</button>
+      <h2 id="result-2"></h2>
+    </section>
+    <section>
+      <h1>Maior palavra</h1>
+      <input
+        type="text"
+        name="String"
+        id="string-3"
+        placeholder="Digite sua frase"
+      />
+
+      <button onclick="biggestWord()">Buscar</button>
+      <h2 id="result-3"></h2>
+    </section>
+    <section>
+      <h1>Soma e produto de um array</h1>
+      <input type="text" name="String" id="string-4" placeholder="1,1,1,1,1" />
+
+      <button onclick="sumArray()">Calcular</button>
+      <h2 id="result-4"></h2>
+    </section>
+    <section>
+      <h1>Idade</h1>
+      <input type="date" name="String" id="string-5" placeholder="1,1,1,1,1" />
+
+      <button onclick="myAge()">Calcular</button>
+      <h2 id="result-5"></h2>
+    </section>
+    <section>
+      <h1>Continha</h1>
+      <input type="text" name="String" id="string-6" />
+      <input type="text" name="String" id="string-7" />
+      <button onclick="makeContinha()">Calcular</button>
+      <table style="width: 100%">
+        <tr>
+          <th>Operação</th>
+          <th>Resultado</th>
+        </tr>
+        <tr>
+          <td id="result-7"></td>
+          <td id="result-8"></td>
+        </tr>
+        <tr>
+          <td id="result-9"></td>
+          <td id="result-10"></td>
+        </tr>
+        <tr>
+          <td id="result-11"></td>
+          <td id="result-12"></td>
+        </tr>
+        <tr>
+          <td id="result-13"></td>
+          <td id="result-14"></td>
+        </tr>
+        <tr>
+          <td id="result-15"></td>
+          <td id="result-16"></td>
+        </tr>
+      </table>
+    </section>
+    <section>
+      <h1>Salário</h1>
+      <input type="text" name="String" id="string-8" />
+
+      <button onclick="newSalary()">Calcular</button>
+      <h2 id="result-17"></h2>
+    </section>
+    <section>
+      <h1>Formatar data</h1>
+      <input type="date" name="String" id="string-9" />
+
+      <button onclick="formatDate()">Formatar</button>
+      <h2 id="result-18"></h2>
+    </section>
+    <section>
+      <h1>Altura</h1>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; width: 300px">
+        <input
+          type="text"
+          name="String"
+          id="string-15"
+          placeholder="Nome da pessoa 1"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-10"
+          placeholder="Altura da pessoa 1"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-16"
+          placeholder="Nome da pessoa 2"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-11"
+          placeholder="Altura da pessoa 2"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-17"
+          placeholder="Nome da pessoa 3"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-12"
+          placeholder="Altura da pessoa 3"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-18"
+          placeholder="Nome da pessoa 4"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-13"
+          placeholder="Altura da pessoa 4"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-19"
+          placeholder="Nome da pessoa 5"
+        />
+        <input
+          type="text"
+          name="String"
+          id="string-14"
+          placeholder="Altura da pessoa 5"
+        />
+      </div>
+      <button onclick="height()">Calcular</button>
+      <h2 id="result-19"></h2>
+    </section>
+    <script src="./scritp.js"></script>
+  </body>
+</html>
