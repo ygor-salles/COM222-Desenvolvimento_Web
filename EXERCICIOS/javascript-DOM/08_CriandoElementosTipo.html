@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <script>
+        function novoItem() {
+            var campos = document.getElementsByTagName("input");
+            var i;
+            var novaLinha = document.createElement("tr");
+            for (i = 0; i < campos.length; i++) {
+                var novoDado = document.createElement("td");
+                novoDado.innerHTML = campos[i].value;
+                novaLinha.appendChild(novoDado);
+            }
+            var tabela = document.getElementById("tabela");
+            tabela.appendChild(novaLinha);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="formulario" class="panel panel-primary">
+        <div class="panel-heading">Meus feitiços</div>
+        <div class="panel-body">
+            Feitiço: <input type="text" />
+            Nível: <input type="text" />
+            <button type="button" id="novo" onclick="novoItem()">Adicionar</button> </div>
+    </div>
+    </div>
+    <br>
+    <div class="container col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table border="1" class="table table-striped" id="tabela">
+                    <tr>
+                        <th>Feitiço</th>
+                        <th>Nível</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+button { 
+    border: none;
+    background-color: white;
+}
+
+button:focus {
+    border-style: none;
+}
+
+button:checked { 
+    border: none;
+    background-color: white;
+}
