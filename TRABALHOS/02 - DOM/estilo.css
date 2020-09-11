@@ -18,3 +18,14 @@ button:checked {
     border: none;
     background-color: white;
 }
+
+.texto {
+    font-size: xx-large;
+}
+
+div img {
+    max-width:150px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+}
