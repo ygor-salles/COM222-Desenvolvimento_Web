@@ -23,9 +23,24 @@ button:checked {
     font-size: xx-large;
 }
 
+.img150 {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.img100{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.img50 {
+    max-width: 50px;
+    max-height: 50px;
+}
+
 div img {
-    max-width:150px;
-    max-height:150px;
+    max-width:100px;
+    max-height:100px;
     width: auto;
     height: auto;
 }
