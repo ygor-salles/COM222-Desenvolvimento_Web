@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 11</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#add-button').on('click', function(){
+                const input = $('input').val()
+                $('#list').append('<li>'+input+'<a href="#">X</a>'+'</li>')
+                $('ul').on('click', 'a', function(){
+                    $('#list').remove()
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <input type="text" id="message">
+    <button id="add-button">Insere</button>
+    <ul id="list"></ul>
+</body>
+</html>

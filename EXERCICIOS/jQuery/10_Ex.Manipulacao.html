@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#add-button').click(function() {
+                const value = $('input').val()
+                $('#lista').append('<li>'+value+'</li>')
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <input type="text" id="message" />
+    <button id="add-button">Adicionar</button>
+    <ul id="lista">
+    </ul>
+</body>
+
+</html>

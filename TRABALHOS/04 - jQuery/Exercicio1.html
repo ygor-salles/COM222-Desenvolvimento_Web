@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(':button').on('click', function () {
+                const valoresEntrada = $(':text')
+                for(let element of valoresEntrada){
+                    $('ol').append('<li>'+element.value+'</li>')
+                    element.value = ''
+                }           
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <input type="text" name="compra"> <br>
+        <br><input id="button" type="button" value="CriarLista"><br>
+        <ol></ol>
+    </form>
+</body>
+
+</html>
