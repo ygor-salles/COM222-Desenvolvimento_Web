@@ -1,0 +1,26 @@
+*instalar servidor node
+npm -i -g http-server
+
+*Startar o servidor front:
+http-server .
+
+*Startar o servidor front sem uso de cache:
+http-server -c-1 .
+
+#Caso de erro ao start o servidor front, executar o comando no windows PowerShell em modo Administrador:
+Set-ExecutionPolicy RemoteSigned
+
+*Startar toda vez que tiver alteração no Backend:
+node server.js
+
+----> server.js(nome do arquivo do servidor)
+
+
+*Parar seja o front ou o Backend: Ctrl+c
+
+
+# Caso Funcione o nodemon que serve para que: ao realizar uma alteração no Backend
+#não seja preciso reiniciá-lo toda vez 
+
+install: npm i --save-dev nodemon
+execução: nodemon server.js

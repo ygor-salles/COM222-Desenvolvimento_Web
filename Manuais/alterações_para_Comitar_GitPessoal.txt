@@ -1,0 +1,23 @@
+após a alteração no código:
+
+executar os seguintes comando git, ja dentro da pasta Udemy no terminal
+
+*para validar os arquivos alterdos
+git status 
+
+*para inserir as varias alterações
+git add .
+
+->caso seja só um arquivo para subir:
+    git add nomeArquivo.html
+
+*faz commit
+git commit -m "alteração realizada"
+
+-> caso a url já esteja definida:
+    *git push -u origin nomeBranch      ---> nomeBranch será master no caso
+
+->caso url não esteja definida:
+    git remote add origin https://...  ---> esse procediemtno só faz uma vez
+
+sucesso, após alterações realizar o mesmo procedimento:

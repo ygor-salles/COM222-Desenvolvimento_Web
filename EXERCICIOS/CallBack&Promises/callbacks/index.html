@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Exemplo 1</label><br/>
+                <button id="click-callback" class="btn btn-primary">
+                    Botão com listener
+                </button><br/>
+                <small id="click-callback-result"></small>
+            </div>
+
+            <div class="col-md-3">
+                <label>Exemplo 2</label><br/>
+                <input type="text" id="click-callback-cep-input" class="form-control">
+                <button id="click-callback-cep" class="btn btn-primary">
+                    Buscar CEP
+                </button><br/>
+                <small id="click-callback-cep-result"></small>
+            </div>
+
+            <div class="col-md-3">
+                <label>Exemplo 3 Promise</label><br/>
+                <input type="text" id="click-callback-promise-cep-input" class="form-control">
+                <button id="click-callback-promise-cep" class="btn btn-primary">
+                    Buscar CEP
+                </button><br/>
+                <small id="click-callback-promise-cep-result"></small>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="./callbacks.js"></script>
+    
+</body>
+</html>
