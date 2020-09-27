@@ -9,23 +9,17 @@ function buscarClima(cidade){
     })
 }
 
-
 $(document).ready(() => {
     $('#button-pesquisar').click(() => {
         const inputCidade = $('#input-cidade').val()
         buscarClima(inputCidade)
             .then(clima => {
                 console.log(clima) 
-                const condicaoAtual = `<h3>${clima.weather[0].description}</h3>`
-                const cidade = `<h2>${clima.name}</h2>`
-                const temperatura = `<h1>${converteTemperatura(clima.main.temp)}°</h1>`
-                const temperaturaMxm = `<h3>Max: ${converteTemperatura(clima.main.temp_max)}°</h3>`
-                const temperaturaMin = `<h3>Min: ${converteTemperatura(clima.main.temp_min)}°</h3>`
-                $('.condicaoAtual').append(condicaoAtual)
-                $('.cidade').append(cidade)
-                $('.temperaturaAtual').append(temperatura)
-                $('.temperaturaMxm').append(temperaturaMxm)
-                $('.temperaturaMin').append(temperaturaMin)
+                $('.condicaoAtual').html(`<h3>${clima.weather[0].description}</h3>`)
+                $('.cidade').html(`<h2>${clima.name}</h2>`)
+                $('.temperaturaAtual').html(`<h1>${converteTemperatura(clima.main.temp)}°</h1>`)
+                $('.temperaturaMxm').html(`<h3>Max: ${converteTemperatura(clima.main.temp_max)}°</h3>`)
+                $('.temperaturaMin').html(`<h3>Min: ${converteTemperatura(clima.main.temp_min)}°</h3>`)
             })
             .catch(error => {
                 alert('Houve erro na requisição!')
