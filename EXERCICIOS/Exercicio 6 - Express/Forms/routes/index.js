@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/cadastro', function(req, res, next) {
-  //A validação de formulário deve ser feita aqui
 
   const { nome, idade, email, linguagens, notify } = req.body
 

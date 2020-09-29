@@ -1,3 +1,5 @@
+//Usando scripts de exercicio passado
+
 function validaIdade(textBox) {
     let boxValue = parseFloat(textBox.value);
     if (isNaN(boxValue) || (boxValue % 1 != 0)) {
@@ -47,27 +49,15 @@ function frequenciaSelecionada() {
             return notify[i].value
 }
 
-function chamar() {
+function chamar(event) {
     campoNome = document.getElementById('name')
     campoIdade = document.getElementById('age')
     campoEmail = document.getElementById('email')
 
-    if (campoNome.value != '' && campoIdade.value != '' && campoEmail.value != '') {
-        //Validando se não há nenhum campo vazio
+    if (campoNome.value != '' && campoIdade.value != '' && campoEmail.value != '') 
         alert('Formulário enviado com sucesso!')
-
-        console.log('Nome: ' + campoNome.value)
-        console.log('Idade: ' + campoIdade.value)
-        console.log('Email: ' + campoEmail.value)
-        console.log('Frequencia: ' + frequenciaSelecionada())
-
-        qtd = document.getElementById('formCheckbox').length
-        linguagem = document.forms['formCheckbox'].linguagens
-        console.log('Linguagens selecionadas: ')
-        for (let i = 0; i < qtd; i++)
-            if (linguagem[i].checked)
-                console.log(linguagem[i].value)
-    }
-    else
+    else{
+        event.preventDefault() //esse método serve previni para que não navegue para próxima pagina
         alert('Todos os campos devem ser preenchidos')
+    }
 }
