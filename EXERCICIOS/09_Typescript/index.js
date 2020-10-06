@@ -2,4 +2,4 @@ function FalaOi(nome) {
     return "Hello, " + nome;
 }
 let nome = 'Fulano';
-console.log(FalaOi(nome));
+document.body.textContent = FalaOi(nome);
