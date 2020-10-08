@@ -52,6 +52,15 @@ npm start
 
 para trocar a porta, exemplo:
 ng serve --host 0.0.0.0 --port 4201
+Ou você pode trocar de forma permanete em package.json, no objeto script no atributo start definir a porta a ser startada:
+"scripts": {
+    "ng": "ng",
+    "start": "ng serve --port 4201",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
 
 *O frontend já está funcionando basta acessar no browser com a porta 4200 que é o padrão do Angular 
 

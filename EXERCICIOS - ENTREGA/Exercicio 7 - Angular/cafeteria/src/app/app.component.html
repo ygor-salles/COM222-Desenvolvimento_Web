@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="mb-xlg">
+        <h1>{{ title }}!</h1>
+        <h3> {{ authors }} </h3>
+
+        <hr /> {{ orderForm.value | json }}
+        <br /> {{ orderModel | json }}
+
+        <hr /> Confirm: {{ confirm_msg }} <br />
+        <hr />
+
+        <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="orderModel.name">
+            </div>
+
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="text" class="form-control" name="email" [(ngModel)]="orderModel.email">
+            </div>
+
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="orderModel.phone">
+            </div>
+
+            <div class="form-group">
+                <label>Escolha a sua bebida</label>
+                <select name="drink-option" class="custom-select" [(ngModel)]="orderModel.drink" name="drink_option">
+                    <option value="">Selecione</option>
+                    <option *ngFor="let drink of drinks">{{ drink }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quantidade de bebidas</label>
+                <input type="text" class="form-control" name="quantidadeBebidas" [(ngModel)]="orderModel.qtdDrink">
+            </div>
+
+            <div class="form-group mb-xlg">
+                <label>Quente ou frio?</label>
+                <div class="form-check">
+                    <input type="text" [(ngModel)]="orderModel.tempPreference" class="form-check-input" type="radio"
+                        name="tempPreference" value="hot">
+                    <label class="form-check-label">Quente</label>
+                </div>
+                <div class="form-check">
+                    <input type="text" [(ngModel)]="orderModel.tempPreference" class="form-check-input" type="radio"
+                        name="tempPreference" value="cold">
+                    <label class="form-check-label">Frio</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Escolha a sua comida</label>
+                <select name="food-option" class="custom-select" [(ngModel)]="orderModel.food" name="food_option">
+                    <option value="">Selecione</option>
+                    <option *ngFor="let food of foods">{{ food }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quantidade de comidas</label>
+                <input type="text" class="form-control" name="quantidadeComidas" [(ngModel)]="orderModel.qtdFood">
+            </div>
+
+            <div class="form-check mb-3">
+                <input type="checkbox" name="sendmsg" class="form-check-input" [(ngModel)]="orderModel.sendText">
+                <label class="form-check-label">Envie-me uma mensagem de texto quando meu pedido ficar pronto</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="confirmOrder(orderForm.value)"
+                title="always enable">Fazer o pedido</button>
+
+        </form>
+    </div>
+</div>

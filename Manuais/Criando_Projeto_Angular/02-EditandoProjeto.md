@@ -9,8 +9,8 @@ src -> pasta onde serão criados outros componentes
 index.html -> single page, basicamente aponta para o componente raiz, app.component.ts. Ou seja a aplicação
 começa em index.html e aponta para o component raiz onde terá todas as ligações com outros componentes 
 
-3 - Para criar o app.component.html raiz deve inserir a linha:
-templateUrl: 'app.component.html' e apagar o styles[] dentro de @Component
+3 - Para criar o app.component.html raiz deve apagar a linha template e a linha styles[]. E inserir a linha:
+templateUrl: 'app.component.html'  dentro de @Component. Isso é realizado em app.component.ts
 Toda a variavel que for criada em exports class component poderá ser utilizado no html com {{}}
 
 4 - INSTALANDO A DEPENDENCIA DO MATERIAL DESIGN:
