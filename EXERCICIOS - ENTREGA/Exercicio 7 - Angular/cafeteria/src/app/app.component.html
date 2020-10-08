@@ -9,7 +9,7 @@
         <hr /> Confirm: {{ confirm_msg }} <br />
         <hr />
 
-        <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm.value)">
+        <form #orderForm="ngForm">
             <div class="form-group">
                 <label>Nome</label>
                 <input type="text" class="form-control" name="name" [(ngModel)]="orderModel.name">
@@ -70,7 +70,7 @@
                 <label class="form-check-label">Envie-me uma mensagem de texto quando meu pedido ficar pronto</label>
             </div>
 
-            <button type="submit" class="btn btn-primary" (click)="confirmOrder(orderForm.value)"
+            <button type="submit" class="btn btn-primary" [disabled]="!orderForm.valid" (click)="confirmOrder(orderForm.value)"
                 title="always enable">Fazer o pedido</button>
 
         </form>

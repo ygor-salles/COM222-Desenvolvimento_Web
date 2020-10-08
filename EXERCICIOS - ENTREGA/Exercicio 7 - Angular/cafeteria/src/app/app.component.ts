@@ -18,10 +18,6 @@ export class AppComponent {
   confirm_msg: string = 'Antes de confirmar'
   data_submitted: string = ''
 
-  onSubmit(value) {
-    console.log(value)
-  }
-
   confirmOrder(data) {
     console.log(data)
     this.confirm_msg = `Obrigado ${data.name} (${data.name.length})`
