@@ -1,0 +1,50 @@
+<div class="content">
+  <div class="container" style="max-width: 100%;">
+    <h2>{{ title }}</h2>
+    <hr>
+    <h4>{{ confirm_msg }}</h4>
+    <form #orderForm="ngForm">
+      <div class="row mb-xlg">
+        <div class="col-md-3">          
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" name="nomeCliente" [(ngModel)]="nf.nomeCliente">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Produto</label>
+            <select class="custom-select" name="opcaoProduto" [(ngModel)]="nf.produtosComprados">
+              <option *ngFor="let produto of produtos">{{ produto.descricao }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-xlg mb-xlg">
+        <div class="col-md-3">
+          <button class="btn btn-primary">Inclui item</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-success">Fecha Nota</button>
+        </div>
+      </div>
+    </form>
+
+    <hr>
+
+    <div class="row mt-xlg">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Qtd Vendida</th>
+            <th>Codigo Produto</th>
+            <th>Descrição Produto</th>
+            <th>Valor Unitário</th>
+            <th>Valor do desconto</th>
+            <th>Valor total com desconto</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>

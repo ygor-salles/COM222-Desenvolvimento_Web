@@ -1,0 +1,7 @@
+
+Bootstrap
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+JQuery
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
