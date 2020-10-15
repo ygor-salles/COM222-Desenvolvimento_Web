@@ -5,27 +5,33 @@
     <h4>{{ confirm_msg }}</h4>
     <form #orderForm="ngForm">
       <div class="row mb-xlg">
-        <div class="col-md-3">          
+        <div class="col-md-3">
           <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" name="nomeCliente" [(ngModel)]="nf.nomeCliente">
+            <input type="text" class="form-control" name="nomeCliente" [(ngModel)]="nomeCliente">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label>Produto</label>
-            <select class="custom-select" name="opcaoProduto" [(ngModel)]="nf.produtosComprados">
-              <option *ngFor="let produto of produtos">{{ produto.descricao }}</option>
+            <select class="custom-select" name="opcaoProduto" [(ngModel)]="produtoComprado">
+              <option *ngFor="let produto of produtos" [ngValue]="produto">{{ produto.descricao }}</option>
             </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Quantidade desejada</label>
+            <input type="text" class="form-control" name="quantidade" [(ngModel)]="quantidade">
           </div>
         </div>
       </div>
       <div class="row mt-xlg mb-xlg">
         <div class="col-md-3">
-          <button class="btn btn-primary">Inclui item</button>
+          <button class="btn btn-primary" (click)="incluirItem()">Inclui item</button>
         </div>
         <div class="col-md-6">
-          <button class="btn btn-success">Fecha Nota</button>
+          <button class="btn btn-success" (click)="fecharNota()">Fecha Nota</button>
         </div>
       </div>
     </form>
@@ -33,17 +39,23 @@
     <hr>
 
     <div class="row mt-xlg">
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Qtd Vendida</th>
-            <th>Codigo Produto</th>
-            <th>Descrição Produto</th>
-            <th>Valor Unitário</th>
-            <th>Valor do desconto</th>
-            <th>Valor total com desconto</th>
-          </tr>
-        </thead>
+      <table border="1" *ngFor="let nf of listaNF">
+        <section>{{ nf.nomeCliente }}</section>
+        <tr>
+          <th>Qtd Vendida</th>
+          <th>Codigo Produto</th>
+          <th>Descrição Produto</th>
+          <th>Valor Unitário</th>
+          <th>Valor do desconto</th>
+          <!--<th>Valor total com desconto</th>-->
+        </tr>
+        <tr *ngFor="let produto of nf.produtosComprados; let i=index">
+          <td>{{ i }}</td>
+          <td>{{ produto.codigo }}</td>
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.valorUnitario }}</td>
+          <td>{{ produto.desconto }}</td>
+        </tr>
       </table>
     </div>
   </div>
