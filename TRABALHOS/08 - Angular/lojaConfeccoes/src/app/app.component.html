@@ -42,19 +42,20 @@
       <table border="1" *ngFor="let nf of listaNF">
         <section>{{ nf.nomeCliente }}</section>
         <tr>
-          <th>Qtd Vendida</th>
           <th>Codigo Produto</th>
           <th>Descrição Produto</th>
           <th>Valor Unitário</th>
           <th>Valor do desconto</th>
-          <!--<th>Valor total com desconto</th>-->
+          <th>Qtd Vendida</th>
+          <th>Valor total com desconto</th>
         </tr>
-        <tr *ngFor="let produto of nf.produtosComprados; let i=index">
-          <td>{{ i }}</td>
-          <td>{{ produto.codigo }}</td>
-          <td>{{ produto.descricao }}</td>
-          <td>{{ produto.valorUnitario }}</td>
-          <td>{{ produto.desconto }}</td>
+        <tr *ngFor="let i of tabela">
+          <td>{{ i.produto.codigo }}</td>
+          <td>{{ i.produto.descricao }}</td>
+          <td>{{ i.produto.valorUnitario }}</td>
+          <td>{{ i.produto.desconto }}</td>
+          <td>{{ i.qtd }}</td>
+          <td>{{ i.totalItem }}</td>
         </tr>
       </table>
     </div>
