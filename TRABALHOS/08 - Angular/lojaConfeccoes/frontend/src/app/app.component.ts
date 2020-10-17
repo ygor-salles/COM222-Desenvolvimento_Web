@@ -1,14 +1,25 @@
+import { ProdutoService } from './produto.service';
 import { Produto } from './produto.model';
 import { NotaFiscal } from './nota-fiscal.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'lojaConfeccoes'
+export class AppComponent implements OnInit {
+  //Lista de produtos que vem do banco
+  produtos: Produto[]
+
+  constructor(private produtoService: ProdutoService) { }
+
+  ngOnInit(): void {
+    //Preenchendo a lista de produtos que vem do banco
+    this.produtoService.read().subscribe(produto => this.produtos = produto)
+  }
+
+  title = 'loja de Confecções'
   confirm_msg = ''
   nomeClienteTabela = ''
 
@@ -31,25 +42,19 @@ export class AppComponent {
   totalItem: number
   totalFinal: number = 0
 
-  //Lista de produtos pré-definidas que terão que vir do banco
-  produtos = [
-    new Produto(1234, 'Calça Jeans', 10, 0), 
-    new Produto(2345, 'Blusa Jeans', 50, 0), 
-    new Produto(3456, 'Camisa Polo', 10, 5.5),
-    new Produto(4567, 'Bermuda nilon', 5, 1)
-  ]
+  //Lendo produtos que vem do banco
 
-  incluirItem(){
-    if (this.quantidade > 0){
+  incluirItem() {
+    if (this.quantidade > 0) {
       this.listaProdutosComprados.push(this.produtoComprado)
       this.listaQuantidade.push(this.quantidade)
-      this.totalItem = parseFloat(((this.produtoComprado.valorUnitario - (this.produtoComprado.valorUnitario * (this.produtoComprado.desconto/100))) * this.quantidade).toFixed(2))
+      this.totalItem = parseFloat(((this.produtoComprado.valorUnitario - (this.produtoComprado.valorUnitario * (this.produtoComprado.desconto / 100))) * this.quantidade).toFixed(2))
       this.tabela.push({
         qtd: this.quantidade,
         produto: this.produtoComprado,
         totalItem: this.totalItem
       })
-      this.totalFinal += this.totalItem 
+      this.totalFinal += this.totalItem
     }
     else {
       alert('Quantidade deve ser maior ou igual a 1')
@@ -57,17 +62,17 @@ export class AppComponent {
     this.produtoComprado = null
     this.quantidade = null
   }
-  
-  fecharNota(){
+
+  fecharNota() {
     this.listaNF.push(new NotaFiscal(this.nomeCliente, this.listaProdutosComprados))
     this.listaProdutosComprados = []
     this.listaQuantidade = []
-    this.confirm_msg = '$'+this.totalFinal
-    this.nomeClienteTabela = 'Cliente '+this.nomeCliente
+    this.confirm_msg = '$' + this.totalFinal
+    this.nomeClienteTabela = 'Cliente ' + this.nomeCliente
     this.nomeCliente = ''
   }
 
-  novaNota(){
+  novaNota() {
     this.listaProdutosComprados = []
     this.listaQuantidade = []
     this.confirm_msg = ''
