@@ -1,3 +1,4 @@
+import { NotaFiscalService } from './nota-fiscal.service';
 import { ProdutoService } from './produto.service';
 import { Produto } from './produto.model';
 import { NotaFiscal } from './nota-fiscal.model';
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   //Lista de produtos que vem do banco
   produtos: Produto[]
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private notaFiscalService: NotaFiscalService) { }
 
   ngOnInit(): void {
     //Preenchendo a lista de produtos que vem do banco
@@ -31,9 +32,6 @@ export class AppComponent implements OnInit {
   //listas de inserção para produtos comprados e suas respectivas quantidades
   listaProdutosComprados = []
   listaQuantidade = []
-
-  //Lista de Notas Fiscais
-  listaNF = []
 
   //Lista para a tabela que será exibida - Relatório unindo objeto NF + quantidade + totalItem
   tabela = []
@@ -64,12 +62,14 @@ export class AppComponent implements OnInit {
   }
 
   fecharNota() {
-    this.listaNF.push(new NotaFiscal(this.nomeCliente, this.listaProdutosComprados))
-    this.listaProdutosComprados = []
-    this.listaQuantidade = []
-    this.confirm_msg = '$' + this.totalFinal
-    this.nomeClienteTabela = 'Cliente ' + this.nomeCliente
-    this.nomeCliente = ''
+    this.notaFiscalService.create(new NotaFiscal(this.nomeCliente, this.listaProdutosComprados)).subscribe(() => {
+      alert('Nota Fiscal emitida com sucesso')
+      this.listaProdutosComprados = []
+      this.listaQuantidade = []
+      this.confirm_msg = '$' + this.totalFinal.toFixed(2)
+      this.nomeClienteTabela = 'Cliente ' + this.nomeCliente
+      this.nomeCliente = ''
+    })
   }
 
   novaNota() {
@@ -82,7 +82,6 @@ export class AppComponent implements OnInit {
     this.quantidade = null
     this.tabela = []
     this.totalFinal = 0
-    console.log(this.listaNF)
   }
 
 }
