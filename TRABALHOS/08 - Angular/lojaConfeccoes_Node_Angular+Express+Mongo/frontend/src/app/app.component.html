@@ -1,0 +1,125 @@
+<div class="content homePrincipal" *ngIf="!showNotes">
+  <div class="container" style="max-width: 100%;">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="col-md-9" style="text-align: right; padding-top: 5px;">
+        <button class="btn btn-success" (click)="clickNotes()">Visualizar Notas</button>
+      </div>
+    </div>
+    <hr>
+    <form #orderForm="ngForm">
+      <div class="row mb-xlg">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" name="nomeCliente" [(ngModel)]="nomeCliente">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Produto</label>
+            <select class="custom-select" name="opcaoProduto" [(ngModel)]="produtoComprado">
+              <option *ngFor="let produto of produtos" [ngValue]="produto">{{ produto.descricao }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Quantidade desejada</label>
+            <input type="text" class="form-control" name="quantidade" [(ngModel)]="quantidade">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-xlg mb-xlg">
+        <div class="col-md-3">
+          <button class="btn btn-primary" (click)="incluirItem()">Inclui item</button>
+        </div>
+        <div class="col-md-9" style="text-align: right;">
+          <button class="btn btn-success" (click)="fecharNota()">Fecha Nota</button>
+        </div>
+      </div>
+      <div class="row mb-xlg mt-xlg">
+        <div class="col-md-12" style="text-align: right;">
+          <button class="btn btn-secondary" (click)="novaNota()">Nova Nota</button>
+        </div>
+      </div>
+    </form>
+
+    <hr>
+
+    <h2>{{ nomeClienteTabela }}</h2>
+    <br> 
+    <div class="row mt-xlg tabela">
+        <table>
+          <thead>
+            <tr>
+              <th>Codigo Produto</th>
+              <th>Descrição Produto</th>
+              <th>Valor Unitário</th>
+              <th>Valor do desconto</th>
+              <th>Qtd Vendida</th>
+              <th>Valor total com desconto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of tabela">
+              <td>{{ i.produto.codigo }}</td>
+              <td>{{ i.produto.descricao }}</td>
+              <td>{{ i.produto.valorUnitario }}</td>
+              <td>{{ i.produto.desconto }}</td>
+              <td>{{ i.qtd }}</td>
+              <td>{{ i.totalItem }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">Total da Nota</td>
+              <td class="totalGeral">{{ confirm_msg }}</td>
+            </tr>
+          </tfoot>
+        </table>
+    </div>
+  </div>
+</div>
+
+<!-- Tela que será exibida o relatório de notas -->
+<div class="col-md-12" *ngIf="showNotes">
+  <div class="card" *ngFor="let note of notasFiscais">
+    <div class="card-header">
+      <div style="float: left;">
+        <h6>Nota: {{note._id}}</h6>
+        <h6>Nome: {{note.nomeCliente}}</h6>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Descrição</th>
+              <th>Valor unitário</th>
+              <th>Desconto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of note.produtosComprados">
+              <td>{{product.codigo}}</td>
+              <td>{{product.descricao}}</td>
+              <td>{{product.valorUnitario}}</td>
+              <td>{{product.desconto}}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <h3>Total: R{{ note.total | currency}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div style="float: right; padding: 5px 0 15px 0;">
+    <button type="button" class="btn btn-primary" (click)="back()">Voltar</button>
+  </div>
+</div>

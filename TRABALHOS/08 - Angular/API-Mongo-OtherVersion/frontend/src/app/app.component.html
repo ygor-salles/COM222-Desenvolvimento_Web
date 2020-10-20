@@ -1,0 +1,111 @@
+<div class="card" *ngIf="!showNotes">
+  <div class="card-header">
+    <div style="float: left">
+      <h1>Loja de confecções</h1>
+    </div>
+    <div style="float: right" *ngIf="notes.length > 0">
+      <button type="button" class="btn btn-primary" (click)="clickNotes()">Ver notas</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="col-md-12" *ngIf="hideTable">
+      <h3>{{orderModel.name}} fez o seguinte pedido:</h3><br>
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor unitário</th>
+            <th>Desconto</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of order.products">
+            <td>{{product.code}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.amount}}</td>
+            <td>{{product.value}}</td>
+            <td>{{product.discount}}</td>
+            <td>{{product.total}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 *ngIf="hideTotal">Total da nota: R{{ order.total | currency}}</h3>
+    </div>
+
+    <form (ngSubmit)="addItem()" #myForm="ngForm">
+      <div class="form-group">
+        <label>Nome: </label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="orderModel.name" required>
+      </div>
+    
+      <div class="form-group">
+        <label>Escolha um produto: </label>
+        <select class="custom-select" name="product" (change)="onChange($event)" [(ngModel)]="orderModel.product" required>
+          <option *ngFor="let product of products" value="{{product.code}}"> {{ product.description }} - R{{ product.value | currency}} </option>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label>Quantidade: </label>
+        <input type="number" class="form-control" name="amount" min="1" [(ngModel)]="orderModel.amount" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Desconto: </label>
+        <input type="number" class="form-control" name="discount" min="1" [(ngModel)]="orderModel.discount">
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">Incluir item</button>
+      <button type="button" class="btn btn-primary" style="margin-left: 10px;" [disabled]="order.products.length == 0" (click)="closeNote()">Fechar nota</button>
+      <button type="button" class="btn btn-primary" style="margin-left: 10px;" [hidden]="order.products.length == 0" (click)="saveNote()">Salvar nota</button>
+    </form>  
+  </div>
+</div>
+
+<div class="col-md-12" *ngIf="showNotes">
+  <div class="card" *ngFor="let note of notes">
+    <div class="card-header">
+      <div style="float: left;">
+        <h6>Nota: {{note._id}}</h6>
+        <h6>Nome: {{note.name}}</h6>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Descrição</th>
+              <th>Quantidade</th>
+              <th>Valor unitário</th>
+              <th>Desconto</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of note.products">
+              <td>{{product.code}}</td>
+              <td>{{product.description}}</td>
+              <td>{{product.amount}}</td>
+              <td>{{product.value}}</td>
+              <td>{{product.discount}}</td>
+              <td>{{product.total}}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <h3>Total: R{{ note.total | currency}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div style="float: right">
+    <button type="button" class="btn btn-primary" (click)="back()">Voltar</button>
+  </div>
+</div>
