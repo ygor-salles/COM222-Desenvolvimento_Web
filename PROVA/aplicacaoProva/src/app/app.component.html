@@ -1,0 +1,120 @@
+<div class="content homePrincipal" *ngIf="!showNotes">
+  <div class="container" style="max-width: 100%;">
+    <div class="row">
+      <div class="col-md-3">
+        <h1>{{ title }}</h1>
+        <h3>Cadastrar Turmas</h3>
+      </div>
+      <div class="col-md-9" style="text-align: right; padding: 10px 10px 0 0;" *ngIf="listaTurma.length > 0">
+        <button class="btn btn-success" (click)="consultaTurmas()">Consultar turmas cadastradas</button>
+      </div>
+    </div>
+    <hr>
+    <form #orderForm="ngForm">
+      <div class="row mb-xlg">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Codigo</label>
+            <input type="text" class="form-control" name="codigoTurma" [(ngModel)]="codigoTurma">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Disciplina</label>
+            <select class="custom-select" name="opcaoDisciplina" [(ngModel)]="escolhaDisciplina">
+              <option *ngFor="let disciplina of listaDisciplinas" [ngValue]="disciplina">{{ disciplina.nome }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Aluno</label>
+            <select class="custom-select" name="opcaoAluno" [(ngModel)]="selecaoAluno">
+              <option *ngFor="let aluno of listaAluno" [ngValue]="aluno">{{ aluno.nome }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-ggg mb-xlg">
+        <div class="col-md-3">
+          <button class="btn btn-primary" (click)="incluirAluno()">Matricular</button>
+        </div>
+        <div class="col-md-9" style="text-align: right;">
+          <button class="btn btn-success" (click)="fecharTurma()">Fechar Turma</button>
+        </div>
+      </div>
+    </form>
+
+    <hr>
+
+    <br>
+    <div class="row mt-xlg tabela">
+      <table>
+        <thead>
+          <tr>
+            <th>Matricula</th>
+            <th>Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aluno of listaAlunosTurma">
+            <td>{{ aluno.nroMatric }}</td>
+            <td>{{ aluno.nome }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Tela que será exibida o relatório de Turmas -->
+<div class="col-md-12" *ngIf="showNotes">
+  <h3>Consultar turma</h3>
+
+  <div class="row mb-xlg">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Codigo da turma</label>
+        <input type="text" class="form-control" name="consultarTurma" [(ngModel)]="consultarTurma">
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary" (click)="verificarTurma()">Consultar</button>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row mt-xlg" *ngIf="mostra">
+    <div class="card itemRelatorio" *ngFor="let turma of listaTurma">
+      <div *ngIf="turma.codigo == consultarTurma">
+        <div class="card-header">
+          <h6>Codigo Turma: {{ turma.codigo }}</h6>
+          <h6>Disciplina: {{ turma.discipTurma.nome }}</h6>
+          <h6>Lista de Alunos</h6>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Matricula</th>
+                  <th>Aluno</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let aluno of turma.listaAlunos">
+                  <td>{{ aluno.nroMatric }}</td>
+                  <td>{{ aluno.nome }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="float: right; padding: 5px 0 15px 0;">
+    <button type="button" class="btn btn-primary" (click)="back()">Voltar</button>
+  </div>
+</div>
