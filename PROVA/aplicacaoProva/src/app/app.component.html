@@ -10,17 +10,17 @@
       </div>
     </div>
     <hr>
-    <form #orderForm="ngForm">
+    <form #form="ngForm">
       <div class="row mb-xlg">
         <div class="col-md-3">
           <div class="form-group">
-            <label>Codigo</label>
+            <label>Codigo da Turma</label>
             <input type="text" class="form-control" name="codigoTurma" [(ngModel)]="codigoTurma">
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label>Disciplina</label>
+            <label>Disciplina da Turma</label>
             <select class="custom-select" name="opcaoDisciplina" [(ngModel)]="escolhaDisciplina">
               <option *ngFor="let disciplina of listaDisciplinas" [ngValue]="disciplina">{{ disciplina.nome }}</option>
             </select>
@@ -37,10 +37,10 @@
       </div>
       <div class="row mt-ggg mb-xlg">
         <div class="col-md-3">
-          <button class="btn btn-primary" (click)="incluirAluno()">Matricular</button>
+          <button type="button" class="btn btn-primary" [disabled]="!form.valid" (click)="incluirAluno()">Matricular</button>
         </div>
         <div class="col-md-9" style="text-align: right;">
-          <button class="btn btn-success" (click)="fecharTurma()">Fechar Turma</button>
+          <button type="button" class="btn btn-success" [disabled]="listaAlunosTurma.length == 0" (click)="fecharTurma()">Fechar Turma</button>
         </div>
       </div>
     </form>
