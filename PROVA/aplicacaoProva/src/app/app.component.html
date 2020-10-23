@@ -45,8 +45,6 @@
       </div>
     </form>
 
-    <hr>
-
     <br>
     <div class="row mt-xlg tabela">
       <table>
@@ -75,40 +73,38 @@
     <div class="col-md-3">
       <div class="form-group">
         <label>Codigo da turma</label>
-        <input type="text" class="form-control" name="consultarTurma" [(ngModel)]="consultarTurma">
+        <input type="text" class="form-control" name="codigoTurma" [(ngModel)]="codigoTurma">
       </div>
-      <div class="col-md-3">
-        <button class="btn btn-primary" (click)="verificarTurma()">Consultar</button>
-      </div>
+    </div>
+    <div class="col-md-3 mt-buttonConsulta">
+      <button class="btn btn-primary" (click)="verificarTurma()">Consultar</button>
     </div>
   </div>
   <hr>
 
-  <div class="row mt-xlg" *ngIf="mostra">
-    <div class="card itemRelatorio" *ngFor="let turma of listaTurma">
-      <div *ngIf="turma.codigo == consultarTurma">
-        <div class="card-header">
-          <h6>Codigo Turma: {{ turma.codigo }}</h6>
-          <h6>Disciplina: {{ turma.discipTurma.nome }}</h6>
-          <h6>Lista de Alunos</h6>
-        </div>
-        <div class="card-body">
-          <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Matricula</th>
-                  <th>Aluno</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let aluno of turma.listaAlunos">
-                  <td>{{ aluno.nroMatric }}</td>
-                  <td>{{ aluno.nome }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+  <div class="row mt-xlg" *ngIf="consultaRelatorio!=undefined">
+    <div class="card itemRelatorio">
+      <div class="card-header">
+        <h6>Codigo Turma: {{ consultaRelatorio.codigo }}</h6>
+        <h6>Disciplina: {{ consultaRelatorio.discipTurma.nome }}</h6>
+        <h6>Lista de Alunos: </h6>
+      </div>
+      <div class="card-body">
+        <div class="col-md-12">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Matricula</th>
+                <th>Aluno</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let aluno of consultaRelatorio.listaAlunos">
+                <td>{{ aluno.nroMatric }}</td>
+                <td>{{ aluno.nome }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'aplicacaoProva'
+  title = 'Aplicação Prova'
   showNotes: boolean
 
   ngOnInit() {
@@ -43,10 +43,9 @@ export class AppComponent implements OnInit {
   //Para alocação de alunos para uma turma
   listaAlunosTurma = [] 
 
-  consultarTurma: Number
-  verifica = false
-  mostra = false
-
+  //Relatorio
+  consultaRelatorio: Turma
+  
   incluirAluno() {
     this.listaAlunosTurma.push(this.selecaoAluno)
     this.selecaoAluno = null
@@ -63,14 +62,9 @@ export class AppComponent implements OnInit {
   }
 
   verificarTurma() {
-    this.listaTurma.forEach(elem => {
-      if (elem.codigo == this.consultarTurma)
-        this.verifica = true
-        this.mostra = true
-    })
-    if (this.verifica == false)
-      alert('Turma não encontrada')
-    this.verifica = false
+    this.consultaRelatorio = this.listaTurma.find(turma => turma.codigo==this.codigoTurma)
+    if(this.consultaRelatorio == undefined) alert('Turma não existe')
+    this.codigoTurma = null
   }
 
   consultaTurmas() {
