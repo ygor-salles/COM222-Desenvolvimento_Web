@@ -37,7 +37,7 @@
       </div>
       <div class="row mt-ggg mb-xlg">
         <div class="col-md-3">
-          <button type="button" class="btn btn-primary" [disabled]="!form.valid" (click)="incluirAluno()">Matricular</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validaFormulario()" (click)="incluirAluno()">Matricular</button>
         </div>
         <div class="col-md-9" style="text-align: right;">
           <button type="button" class="btn btn-success" [disabled]="listaAlunosTurma.length == 0" (click)="fecharTurma()">Fechar Turma</button>
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="col-md-3 mt-buttonConsulta">
-      <button class="btn btn-primary" (click)="verificarTurma()">Consultar</button>
+      <button class="btn btn-primary" (click)="verificarTurma()" [disabled]="codigoTurma==null">Consultar</button>
     </div>
   </div>
   <hr>

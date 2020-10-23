@@ -52,6 +52,12 @@ export class AppComponent implements OnInit {
     console.log(this.listaAlunosTurma)
   }
 
+  validaFormulario(): boolean {
+    if (this.codigoTurma==null || this.escolhaDisciplina==null || this.selecaoAluno==null)
+      return false
+    return true
+  }
+
   fecharTurma() {
     this.listaTurma.push(new Turma(this.codigoTurma, this.escolhaDisciplina, this.listaAlunosTurma))
     this.codigoTurma = null
