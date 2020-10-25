@@ -1,6 +1,6 @@
 export class Aluno {
     constructor(
-        public nroMatric: Number,
-        public nome: String 
+        public nroMatric: number,
+        public nome: string 
     ) {}
 }
