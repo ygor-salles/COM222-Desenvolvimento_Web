@@ -27,8 +27,7 @@ $('#click-callback-cep').click(buscaCep)
 function retornaCep(cep){
     return new Promise((resolve, reject) => {
         try{
-            if (!cep.IsValid)
-                resolve($.getJSON(`https://viacep.com.br/ws/${cep}/json/`))
+            resolve($.getJSON(`https://viacep.com.br/ws/${cep}/json/`))
         }
         catch(e) {
             reject(e)
@@ -44,6 +43,31 @@ function pegaCep(){
 }
 
 $('#click-callback-promise-cep').click(pegaCep)
+
+/*#####################################################################################*/
+//Fazendo com Async Await
+
+function buscaAPI(cep){
+    return new Promise(resolve => resolve($.getJSON(`https://viacep.com.br/ws/${cep}/json/`)))
+}
+
+async function retornandoCep(cep){
+    try {
+        return await buscaAPI(cep)
+    }
+    catch(e) {
+        throw 'Cep Inválido'
+    }
+}
+
+async function capturaCep(){
+    const cepInput = $('#input-async').val()
+    const resultado = await retornandoCep(cepInput)
+    //const resultado = await retornaCep(cepInput) Poderia ser chamado dess função tb
+    $('#small-async').text(resultado.localidade)
+}
+
+$('#button-async').click(capturaCep)
 
 /*#####################################################################################*/
 //Fazendo com ajax
