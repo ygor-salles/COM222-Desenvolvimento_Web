@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <a (click)="back()">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h6 class="title">CAIXA</h6>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <hr>
+    </div>
+</div>
+
+<div class="row top">
+    <div class="col-md-6">
+        <div id="accordion">
+            <div class="card" *ngFor="let order of orders">
+                <div class="card-header">
+                    <h5 class="mb-0 d-inline">
+                        <button type="button" class="btn btn-success">
+                            Pedido {{order._id}}
+                        </button>
+
+                        <i class="fas fa-check-circle fa-2x" style="float: right; color:green" *ngIf="order.delivered"></i>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div style="float:left">
+                        <span>Cliente: {{order.client.name}}</span><br>
+                        <span>Telefone: {{order.client.phone}}</span><br>
+                        <span>Data: {{order.date}}</span><br>
+                        <span *ngIf="order.client.delivery == 'retirada'; then thenTemplateName else elseTemplateName"></span><br><br>
+                        <ng-template #thenTemplateName>
+                            Retirada no local
+                        </ng-template>
+                        <ng-template #elseTemplateName>
+                            Entrega(30-40 min)
+                        </ng-template>
+                    </div>
+
+                    <div style="float:right">
+                        <span>Pago</span>
+                        <div class="form-group">
+                            <input type="radio" name="{{order._id}}" id="{{order._id}}" (change)="payed(order._id, true)" [checked]="order.delivered">
+                            <label for="{{order._id}}">Sim</label><br>
+                            <input type="radio" name="{{order._id}}" id="{{order._id}}1" (change)="payed(order._id, false)" [checked]="!order.delivered">
+                            <label for="{{order._id}}1">Não</label>
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ITENS</th>
+                                <th>PREÇO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let o of order.products">
+                                <td>
+                                    {{o.amount}} x {{o.product.name}}
+                                    <span *ngIf="o.product.name != 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)' && o.opt.radio != null"> - {{o.opt.radio.name}}</span>
+                                    <span *ngIf="o.product.name == 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)'">
+                                        <br>
+                                        +1 {{o.opt.radio.name}}
+                                    </span>
+                                    <span *ngFor="let rb of o.opt.checkbox.rice_and_bean">
+                                        <br>
+                                        +1 {{rb.name}}
+                                    </span>
+                                    <span *ngFor="let sd of o.opt.checkbox.side_dish">
+                                        <br>
+                                        +1 {{sd.name}}
+                                    </span>
+                                    <span *ngIf="o.opt.obs != null">
+                                        <br>
+                                        - {{o.opt.obs}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span *ngIf="o.product.name == 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)' || o.opt.radio == null; then thenTemplateName else elseTemplateName"></span>
+                                    
+                                    <ng-template #thenTemplateName>
+                                        {{(o.product.value * o.amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </ng-template>
+                                    <ng-template #elseTemplateName>
+                                        {{(o.opt.radio.value * o.amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </ng-template>
+
+                                    <span *ngIf="o.product.name == 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)'">
+                                        <br>
+                                        {{o.opt.radio.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </span>
+                                    <span *ngFor="let rb of o.opt.checkbox.rice_and_bean">
+                                        <br>
+                                        {{rb.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </span>
+                                    <span *ngFor="let sd of o.opt.checkbox.side_dish">
+                                        <br>
+                                        {{sd.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <strong style="float:right;">Total do pedido: {{order.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong>
+                </div>
+            </div>
+        </div>
+        <!-- <button type="button" class="btn btn-success" style="width:100%" (click)="close()">FECHAR CAIXA</button> -->
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <strong>
+                    Saldo diário!
+                </strong>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Total faturado: {{saldo.totalPayed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total perda: {{saldo.totalLoss.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</td>
+                        </tr>
+                        <tr>
+                            <td [style.color]="saldo.totalPayed - saldo.totalLoss >= 0 ? 'green' : 'red'">Saldo: {{(saldo.totalPayed - saldo.totalLoss).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.top{
+    margin-top: 10px;
+}
+.title{
+    margin-top: 18px;
+    margin-left: 20px;
+    font-size: large;
+}
+i{
+    margin-top: 20px;
+    margin-left: 15px;
+}
+a{
+    color: inherit;
+}
+span{
+    /* color: rgb(127, 143, 159); */
+    font-size: 12px;
+}
+.btn-default{
+    background-color:rgb(108, 117, 125);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 16px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}

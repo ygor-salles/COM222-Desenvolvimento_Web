@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <a [routerLink]="['/carShopping']">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h6 class="title">EDIÇÃO DE PRODUTO</h6>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <hr>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <img src="{{product?.img}}" alt="" style="border-radius: 1%;" width="750" height="400">
+        </div>
+    </div>
+
+    <div class="row top">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <p>{{product?.name}}</p>
+                    <p class="description">{{product?.description}}</p>
+                    <h6 *ngIf="!product?.description.includes('A partir de')">{{product?.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h6>
+
+                    <div class="card top" *ngFor="let option of product?.options">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{option.title}}
+                                    <br>
+                                    {{option.sub}}
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn-default" style="float:right;">OBRIGATÓRIO</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" *ngFor="let o of option.options">
+                                <div class="col-md-6">{{o.name}}</div>
+                                <div class="col-md-6">
+                                    <div style="float: right;">
+                                        <label for="{{o.name}}" style="margin-right: 10px;" *ngIf="o.value != 0">{{o.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</label>
+                                        <input type="radio" name="water" id="{{o.name}}" *ngIf="option.sub == 'Escolha 1 opção' || option.sub == ''" (click)="radioChoose(o.name, o.value)" [checked]="detail.opt.radio.name == o.name">
+                                        <!-- <input type="checkbox" name="{{o.name}}" id="{{o.name}}" *ngIf="option.sub != '' && option.sub != 'Escolha 1 opção'" (change)="checkboxChoose(option.title, o.name, o.value, $event)"> -->
+                                        <input type="checkbox" name="{{o.name}}" id="{{o.name}}" *ngIf="option.sub != '' && option.sub != 'Escolha 1 opção'" (change)="checkboxChoose(option.title, o.name, o.value, $event)" [checked]="o.check != undefined && o.check == true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card top">
+                        <div class="card-header">
+                            Alguma observação?
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <textarea name="obs" id="obs" cols="100" rows="5" [(ngModel)]="obs"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="top">
+                        <button class="btn btn-success" (click)="decrease()" [disabled]='total === 0'>-</button>
+                        <span style="margin-left: 15px;">{{qtd}}</span>
+                        <button class="btn btn-success" (click)="increase()" style="margin-left: 15px;" [disabled]='total === 0'>+</button>
+                        <button class="btn btn-success" style="float: right;" (click)="edit()" [disabled]='total === 0'>Editar 
+                            <span>{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

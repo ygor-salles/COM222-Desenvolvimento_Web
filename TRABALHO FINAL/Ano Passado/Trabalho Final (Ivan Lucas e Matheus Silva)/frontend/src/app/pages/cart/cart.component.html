@@ -1,0 +1,239 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <a [routerLink]="['/']">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h6 class="title">MEU PEDIDO</h6>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <hr>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row top">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ITENS</th>
+                                <th>PREÇO</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of products">
+                                <td>
+                                    {{p.amount}} x {{p.product.name}}
+                                    <span *ngIf="p.product.name != 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)' && p.opt.radio != null"> - {{p.opt.radio.name}}</span>
+                                    <span *ngIf="p.product.name == 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)'">
+                                        <br>
+                                        +1 {{p.opt.radio.name}}
+                                    </span>
+                                    <span *ngFor="let rb of p.opt.checkbox.rice_and_bean">
+                                        <br>
+                                        +1 {{rb.name}}
+                                    </span>
+                                    <span *ngFor="let sd of p.opt.checkbox.side_dish">
+                                        <br>
+                                        +1 {{sd.name}}
+                                    </span>
+                                    <span *ngIf="p.opt.obs != null">
+                                        <br>
+                                        - {{p.opt.obs}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span *ngIf="p.product.name == 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)' || p.opt.radio == null; then thenTemplateName else elseTemplateName"></span>
+                                    
+                                    <ng-template #thenTemplateName>
+                                        {{(p.product.value * p.amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </ng-template>
+                                    <ng-template #elseTemplateName>
+                                        {{(p.opt.radio.value * p.amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </ng-template>
+
+                                    <span *ngIf="p.product.name == 'REFEIÇÃO DELIVERY 450 GRAMAS SÁBADO (80 gramas de carne)'">
+                                        <br>
+                                        {{p.opt.radio.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </span>
+
+                                    <span *ngFor="let rb of p.opt.checkbox.rice_and_bean">
+                                        <br>
+                                        {{rb.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </span>
+                                    <span *ngFor="let sd of p.opt.checkbox.side_dish">
+                                        <br>
+                                        {{sd.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/product', p.product._id, 'edit']">
+                                        <i class="fas fa-pencil-alt" style="color:green;"></i>
+                                    </a>
+                                    <a>
+                                        <i class="fa fa-trash-alt" (click)="remove(p.product._id)" style="color:red;"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <button type="button" class="btn btn-outline-success" style="width:100%" [routerLink]="['/']">Adicionar mais items</button>
+                    <strong>TOTAL</strong>
+                    <strong style="float:right;">{{total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</strong>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row top">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Escolha uma opção
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn-default" style="float:right;">OBRIGATÓRIO</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Entrega(30-40 min)
+                                    <div>(sujeito a disponibilidade e taxas)</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="float: right;">
+                                        <input type="radio" name="delivery" id="delivery" (change)="onItemChange('entrega')">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    Retirada no local
+                                    <div>(sujeito a disponibilidade)</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="float: right;">
+                                        <input type="radio" name="delivery" id="delivery2" (change)="onItemChange('retirada')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row top">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Qual o seu nome?
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn-default" style="float:right;">OBRIGATÓRIO</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" name="nameClient" id="nameClient" class="form-control" [(ngModel)]="data.name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row top">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Seu telefone
+                                    <div>(caso a gente precise falar com você)</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn-default" style="float:right;">OBRIGATÓRIO</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" name="phoneClient" id="phoneClient" class="form-control" [(ngModel)]="data.phone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row top">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <button type="button" [disabled]="data.delivery == null || data.name == null || data.phone == null" class="btn btn-success" style="width:100%" (click)="send()">Enviar pedido</button>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

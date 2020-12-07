@@ -1,0 +1,39 @@
+<div class="container top">
+    <div class="col-md-12">
+        <select name="product" id="product" class="form-control" (change)="onChange($event)">
+            <option value="">Selecione</option>
+            <option *ngFor="let type of types" value="{{type._id}}">{{type.name}}</option>
+        </select>
+    </div>
+
+    <!-- <div class="row"> -->
+        <div class="col-md-12">
+            <div class="card top" *ngFor="let l of list">
+                <div class="card-header">
+                    {{l.name}}
+                </div>
+
+                <div class="card-body">
+                    <div class="container" *ngFor="let p of l.products">
+                        <a [routerLink]="['/product', p._id, 'detail']" class="hover-product">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <p>{{p.name}}</p>
+                                    <p class="description">{{p.description}}</p>
+                                    <h6>{{p.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}}</h6>
+                                </div>
+                                <div class="col-md-2">
+                                    <!-- <img src="http://placehold.it/100x100" alt="{{p.name}}" style="border-radius: 30%;"> -->
+                                    <img src="{{p.img}}" alt="{{p.name}}" style="border-radius: 30%;" width="100" height="100">
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+</div>

@@ -1,0 +1,16 @@
+#accordion{
+  height: 600px;
+  overflow-y: auto;
+}
+.title{
+  margin-top: 18px;
+  margin-left: 20px;
+  font-size: large;
+}
+i{
+  margin-top: 20px;
+  margin-left: 15px;
+}
+a{
+  color: inherit;
+}
