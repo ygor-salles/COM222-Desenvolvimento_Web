@@ -1,0 +1,32 @@
+### SELECT Busca a informação de todos os usuários
+GET  http://localhost:3001/users/ HTTP/1.1
+
+### INSERT Registra usuário ((*) Campos obrigatórios)
+POST  http://localhost:3001/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Joe Doe",
+    "email": "john.doe@email.com",
+    "password": "johndoe"
+}
+
+### UPDATE
+PUT  http://localhost:3001/users/:user_id HTTP/1.1
+Content-Type: application/json
+
+{
+    "password": "123"
+}
+
+### DELETE Remove o usuário
+DELETE  http://localhost:3001/users/:user_id HTTP/1.1
+
+### Realiza login com o usuário John
+POST http://localhost:3001/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "john.doe@email.com",
+    "password": "johndoe"
+}

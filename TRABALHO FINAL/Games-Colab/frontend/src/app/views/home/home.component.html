@@ -1,0 +1,12 @@
+<mat-card class="home mat-elevation-z4">
+    <mat-card-title class="title">Bem Vindo!</mat-card-title>
+    <mat-card-subtitle class="subtitle">
+        Sistema colaborativo para cadastramento, avaliação e consulta de jogos
+    </mat-card-subtitle>
+</mat-card>
+
+<div class="tela">
+    <div *ngIf="username==null">
+        <app-login></app-login>
+    </div>
+</div>

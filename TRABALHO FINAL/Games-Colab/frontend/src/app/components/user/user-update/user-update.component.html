@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-title>Alterar dados do cadastro</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome"
+                [(ngModel)]="user.name" name="name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="E-mail"
+                [(ngModel)]="user.email" name="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Senha"
+                [(ngModel)]="user.password" name="password">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="updateUser()" color="primary">
+        Atualizar
+    </button>
+    
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+</mat-card>

@@ -1,0 +1,214 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-subtitle>Apenas será considerado o filtro onde você estiver digitando, ou seja, sem combinações.</mat-card-subtitle>
+    <form>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Título</mat-label>
+            <input type="text" placeholder="Ex. Uncharted" matInput [formControl]="titlesControl" [matAutocomplete]="autoTitle" (input)="applyFilter($event.target.value)" (keyup.enter)="applyFilter($event.target.value)">
+            <mat-autocomplete #autoTitle="matAutocomplete" [displayWith]="displayTitles">
+                <mat-option *ngFor="let game of filteredTitles | async" [value]="game" (click)="applyFilter($event.target.innerText)">
+                    {{game.title}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Desenvolvedor</mat-label>
+            <input type="text" placeholder="Ex. Naughty Dog" matInput [formControl]="developersControl" [matAutocomplete]="autoDeveloper" (input)="applyFilter($event.target.value)" (keyup.enter)="applyFilter($event.target.value)">
+            <mat-autocomplete #autoDeveloper="matAutocomplete" [displayWith]="displayDevelopers" >
+                <mat-option *ngFor="let game of filteredDevelopers | async" [value]="game" (click)="applyFilter($event.target.innerText)">
+                    {{ game.developer }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Gênero</mat-label>
+            <input type="text" placeholder="Ex. Ação" matInput [formControl]="genresControl" [matAutocomplete]="autoGenre" (input)="applyFilter($event.target.value)" (keyup.enter)="applyFilter($event.target.value)">
+            <mat-autocomplete #autoGenre="matAutocomplete" [displayWith]="displayGenres" >
+                <mat-option *ngFor="let game of filteredGenres | async" [value]="game" (click)="applyFilter($event.target.innerText)">
+                    {{ game.genre }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </form>
+</mat-card>
+
+<div class="mat-elevation-z8" class="example-container">
+
+    <table *ngIf="statusTable" mat-table [dataSource]="games" class="mat-elevation-z8">
+
+        <!-- Image Column -->
+        <ng-container matColumnDef="imgPath">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef> Capa </th>
+            <td mat-cell *matCellDef="let row">
+                <a routerLink="/games/review/{{ row._id }}">
+                    <div *ngIf="row.imgPath">
+                        <img src="{{row.imgPath}}" height="120" width="120" />
+                    </div>
+                    <div *ngIf="!row.imgPath">
+                        Não há imagem cadastrada
+                    </div>
+                </a>
+            </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Titulo</th>
+            <td mat-cell *matCellDef="let row">
+                <a routerLink="/games/review/{{ row._id }}">
+                    {{row.title}}
+                </a>
+            </td>
+        </ng-container>
+
+        <!-- Summary Column -->
+        <ng-container matColumnDef="summary">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Resumo</th>
+            <td mat-cell *matCellDef="let row" (click)="openDialog(row.summary)">
+                <a style="cursor:pointer; color: rgb(72, 153, 247);">Ver resumo</a>
+            </td>
+        </ng-container>
+
+        <!-- Developer Column -->
+        <ng-container matColumnDef="developer">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Desenvolvedor</th>
+            <td mat-cell *matCellDef="let row">{{ row.developer }}</td>
+        </ng-container>
+
+        <!-- Genre Column -->
+        <ng-container matColumnDef="genre">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Gênero</th>
+            <td mat-cell *matCellDef="let row">{{ row.genre }}</td>
+        </ng-container>
+
+        <!-- Console Type Column -->
+        <ng-container matColumnDef="type">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Console</th>
+            <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+        </ng-container>
+
+        <!-- Console Rating Column -->
+        <ng-container matColumnDef="rating">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Rating</th>
+            <td mat-cell *matCellDef="let row">{{ row.rating }}</td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container *ngIf="username!=null" matColumnDef="action">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let row">
+                <div *ngIf="user_id==row.user_id">
+                    <a routerLink="/games/update/{{ row._id }}" class="edit">
+                        <i class="material-icons">
+                            edit
+                        </i>
+                    </a>
+                    <a routerLink="/games/delete/{{ row._id }}" class="delete">
+                        <i class="material-icons">
+                            delete
+                        </i>
+                    </a>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td colspan="8" class="mat-cell not-found">Nenhum resultado encontrado para o filtro</td>
+        </tr>
+    </table>
+
+    <table *ngIf="!statusTable" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Image Column -->
+        <ng-container matColumnDef="imgPath">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef> Capa </th>
+            <td mat-cell *matCellDef="let row">
+                <a routerLink="/games/review/{{ row._id }}">
+                    <img src="{{row.imgPath}}" height="120" width="120" />
+                </a>
+            </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Titulo</th>
+            <td mat-cell *matCellDef="let row">
+                <a routerLink="/games/review/{{ row._id }}">
+                    {{row.title}}
+                </a>
+            </td>
+        </ng-container>
+
+        <!-- Summary Column -->
+        <ng-container matColumnDef="summary">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Resumo</th>
+            <td mat-cell *matCellDef="let row" (click)="openDialog(row.summary)">
+                <a style="cursor:pointer; color: rgb(72, 153, 247);">Ver resumo</a>
+            </td>
+        </ng-container>
+
+        <!-- Developer Column -->
+        <ng-container matColumnDef="developer">
+            <th style="text-align: center; margin: 1%;" mat-header-cell *matHeaderCellDef>Desenvolvedor</th>
+            <td mat-cell *matCellDef="let row">{{ row.developer }}</td>
+        </ng-container>
+
+        <!-- Genre Column -->
+        <ng-container matColumnDef="genre">
+            <th mat-header-cell *matHeaderCellDef>Gênero</th>
+            <td mat-cell *matCellDef="let row">{{ row.genre }}</td>
+        </ng-container>
+
+        <!-- Console Type Column -->
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Console</th>
+            <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+        </ng-container>
+
+        <!-- Console Rating Column -->
+        <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef>Rating</th>
+            <td mat-cell *matCellDef="let row">{{ row.rating }}</td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container *ngIf="username!=null" matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let row">
+                <div *ngIf="user_id==row.user_id">
+                    <a routerLink="/games/update/{{ row._id }}" class="edit">
+                        <i class="material-icons">
+                            edit
+                        </i>
+                    </a>
+                    <a routerLink="/games/delete/{{ row._id }}" class="delete">
+                        <i class="material-icons">
+                            delete
+                        </i>
+                    </a>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td colspan="8" class="mat-cell not-found">Nenhum resultado encontrado para o filtro</td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="games.length == 0">
+    <mat-card>
+        Ainda não há jogos cadastrados! Para contribuir você precisa estar logado
+    </mat-card>
+</div>

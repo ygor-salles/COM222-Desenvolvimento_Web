@@ -1,0 +1,29 @@
+<mat-toolbar class="header mat-elevation-z4">
+    <span>
+        <a routerLink="/">
+            <img class="kratos-mini" src="assets/img/kratos-mini.png" alt="Imagem">
+        </a>
+    </span>
+    <span class="title-group">
+        <a>
+            <i class="material-icons">
+                {{ icon }}
+            </i>
+            {{ title }}
+        </a>
+    </span>
+    <span class="example-spacer"></span>
+    <div class="cadastro">
+        <button mat-icon-button class="example-icon person-icon" [matMenuTriggerFor]="menu">
+            <mat-icon>login</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button *ngIf="username==null" mat-menu-item (click)="autenticar()">Fazer login</button>
+            <button *ngIf="username==null" mat-menu-item (click)="registrar()">Registrar</button>
+            <button *ngIf="username!=null" mat-menu-item (click)="sair()">Sair</button>
+        </mat-menu>
+    </div>
+    <div class="login">
+        <span>{{ username == null ? 'Logar' : username}}</span>
+    </div>
+</mat-toolbar>

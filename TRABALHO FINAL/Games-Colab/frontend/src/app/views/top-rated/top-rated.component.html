@@ -1,0 +1,113 @@
+<div class="header-button">    
+    <button mat-raised-button color="primary">
+        <a routerLink="/consoles">Escolher outro console</a>
+    </button>
+
+    <button mat-raised-button color="primary">
+        <a routerLink="/games">Ver mais jogos</a>
+    </button>    
+</div>
+
+<div class="container-wrapper">
+	<div *ngIf="!firstGame && !secondGame && !thirdGame">
+		Desculpe, não temos jogos para essa plataforma :(
+	</div>
+
+	<div *ngIf="firstGame" class="card-wrapper">
+		<div class="card">
+			<div routerLink="/games/review/{{firstGame?._id}}">
+				<img src="{{ 	firstGame?.imgPath 		? firstGame.imgPath 		: 'http://radioingamar.com.br/portal/img/not-found.png' }}" alt="Avatar" style="width: 100%"/>
+			</div>
+			<div class="container">
+				<div routerLink="/games/review/{{firstGame?._id}}">
+					<h4>
+						<b style="padding-left: .4em;">{{ firstGame?.title }}</b>
+					</h4>
+				</div>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Gênero: {{ firstGame?.genre }}</b><br>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Nota: {{ firstGame?.rating }} </b><br>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Desenvolvedor: {{ firstGame?.developer }} </b><br>
+				<p style="padding-left: .4em;"><b>Descrição: </b>{{ firstGame?.summary }}</p>
+			</div>
+		</div>
+		<div class="star-container">
+			<img class="star-img" src="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png" alt=""/>
+			<img class="star-img" src="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png" alt=""/>
+			<img class="star-img" src="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png" alt=""/>
+		</div>
+		<p class="rated">1° Mais bem votado</p>
+	</div>
+	<div *ngIf="secondGame" class="card-wrapper">
+		<div class="card">
+			<div  routerLink="/games/review/{{secondGame?._id}}">
+				<img
+					src="{{
+						secondGame && secondGame.imgPath
+							? secondGame.imgPath
+							: 'http://radioingamar.com.br/portal/img/not-found.png'
+					}}"
+					alt="Avatar"
+					style="width: 100%"
+				/>
+			</div>
+			<div class="container">
+				<div  routerLink="/games/review/{{secondGame?._id}}">
+					<h4>
+						<b style="padding-left: .4em;">{{ secondGame?.title }}</b>
+					</h4>
+				</div>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Gênero: {{ secondGame?.genre }}</b><br>
+                <b style="padding-left: .4em;font-size: .8em; margin-bottom: 0;">Nota: {{ secondGame?.rating }} </b><br>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Desenvolvedor: {{ firstGame?.developer }} </b><br>
+				<p style="padding-left: .4em;"><b>Descrição: </b>{{ secondGame?.summary }}</p>
+			</div>
+		</div>
+		<div class="star-container">
+			<img
+				class="star-img"
+				src="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png"
+				alt=""
+			/>
+			<img
+				class="star-img"
+				src="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png"
+				alt=""
+			/>
+		</div>
+		<p class="rated">2° Mais bem votado</p>
+	</div>
+	<div *ngIf="thirdGame" class="card-wrapper">
+		<div class="card">
+			<div routerLink="/games/review/{{thirdGame?._id}}" >
+				<img
+					src="{{
+						thirdGame?.imgPath
+							? thirdGame.imgPath
+							: 'http://radioingamar.com.br/portal/img/not-found.png'
+					}}"
+					alt="Avatar"
+					style="width: 100%"
+				/>
+			</div>
+			<div class="container">
+				<div routerLink="/games/review/{{thirdGame?._id}}" >
+					<h4>
+						<b style="padding-left: .4em;">{{ thirdGame?.title }}</b>
+					</h4>
+				</div>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Gênero: {{ thirdGame?.genre }}</b><br>
+                <b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Nota: {{ thirdGame?.rating }} </b><br>
+				<b style="padding-left: .4em; font-size: .8em; margin-bottom: 0;">Desenvolvedor: {{ firstGame?.developer }} </b><br>
+				<p style="padding-left: .4em;"><b>Descrição: </b>{{ thirdGame?.summary }}</p>
+			</div>
+		</div>
+		<div class="star-container">
+			<img
+				class="star-img"
+				src="https://www.freepnglogos.com/uploads/star-png/star-vector-png-transparent-image-pngpix-21.png"
+				alt=""
+			/>
+		</div>
+		<p class="rated">3° Mais bem votado</p>
+	</div>
+</div>

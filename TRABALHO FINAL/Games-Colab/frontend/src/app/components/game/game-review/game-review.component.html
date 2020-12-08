@@ -1,0 +1,74 @@
+<mat-card class="details-game">
+    <mat-card-title class="card-with-button">Você está visualizando o jogo "{{gameTitle}}"</mat-card-title>
+    <button class="button-in-title" mat-raised-button (click)="backToGames()" color="basic">
+        Ver lista de jogos
+    </button>
+</mat-card>
+
+<mat-divider [inset]="true"></mat-divider>
+
+<div *ngIf="reviews.length > 0">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="reviews">
+
+            <!-- Rate Column -->
+            <ng-container matColumnDef="rate">
+                <th mat-header-cell *matHeaderCellDef>Nota</th>
+                <td mat-cell *matCellDef="let row">{{row.rate}}</td>
+            </ng-container>
+
+            <!-- Comment Column -->
+            <ng-container matColumnDef="comment">
+                <th mat-header-cell *matHeaderCellDef>Comentário</th>
+                <td mat-cell *matCellDef="let row">{{row.comment}}</td>{{user_id}}
+            </ng-container>
+
+             <!-- Action Column -->
+            <ng-container *ngIf="user_id!=null" matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Ações</th>
+                <td mat-cell *matCellDef="let row">
+                    <div *ngIf="user_id==row.user_id">
+                        <a (click)="deleteReview(row._id)" class="delete">
+                            <i class="material-icons">
+                                delete
+                            </i>
+                        </a>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="reviews.length == 0">
+    <mat-card>
+            Ainda não há reviews cadastrados para esse jogo! Para contribuir você precisa estar logado
+    </mat-card>
+</div>
+
+<mat-divider [inset]="true"></mat-divider>
+
+<mat-card *ngIf="user_id!=null">
+    <mat-card-title>Contribua com a sua avaliação!</mat-card-title>
+    <form class="example-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Comentário</mat-label>
+            <textarea [(ngModel)]="review.comment" matInput name="comment"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nota</mat-label>
+            <input [(ngModel)]="review.rate" matInput OnlyNumber="true" name="rate" (keydown)="checkInput($event)">
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button (click)="insertReview()" color="accent">
+        Enviar
+    </button>
+    <button mat-raised-button (click)="backToGames()">
+        Ver lista de jogos
+    </button>
+</mat-card>

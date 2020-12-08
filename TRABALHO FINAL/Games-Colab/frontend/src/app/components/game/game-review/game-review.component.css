@@ -1,0 +1,78 @@
+.details-game {
+    display: flex;
+}
+
+.details-game mat-card-header {
+    width: 30%;
+}
+
+.details-game mat-card-content {
+    width: 70%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+button {
+    margin: 20px 15px 0px 0px;
+}
+
+table {
+    width: 100%;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.edit>i {
+    color: #06d6a0;
+}
+
+.delete {
+    margin-right: 10px;
+}
+
+.delete>i {
+    color: #e35e6b;
+}
+
+button {
+    margin-bottom: 30px;
+}
+
+mat-divider {
+    border-top-width: 40px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: #ffffff !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: #ffffff !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: #ffffff !important;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+td:first-child:nth-last-child(3) {
+    width: calc(100%/3);
+}
+
+td:first-child:nth-last-child(2) {
+    width: calc(100%/2);
+}

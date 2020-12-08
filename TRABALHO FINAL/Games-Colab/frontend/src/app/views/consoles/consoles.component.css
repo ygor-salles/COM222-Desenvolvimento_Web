@@ -1,0 +1,42 @@
+.games-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-top: 10em;
+  max-width: 90%;
+}
+
+.butao {
+  color: red;
+}
+.titulo-consoles {
+  margin-top: 1em;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+}
+
+.console-container { 
+  width: 16em;
+  cursor: pointer;
+}
+.console-container img { 
+  width: 100%;
+}
+
+#xbox {
+  width: 12em;
+}
+
+#play {
+  width: 11em;
+}
+
+#switch {
+  width: 15em;
+}
+
+#pc {
+  width: 18em;
+}

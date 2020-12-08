@@ -1,0 +1,25 @@
+<mat-card class="container-login">
+    <mat-card-title class="titulo">
+        <img class="kratos-mini" src="../../../assets/img/kratos-mini.png" alt="kratos">
+    </mat-card-title>
+    <form>
+        <mat-form-field>
+            <input [(ngModel)]="usuario.email" type="email" matInput placeholder="E-mail" name="email" id="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input [(ngModel)]="usuario.password" type="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" name="password"
+                id="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+    <button type="submit" mat-raised-button (click)="fazerLogin()" color="primary" name="action">
+        Login
+        <i class="material-icons right">send</i>
+    </button>
+    <br><br><br>
+    <a routerLink="users/create" (click)="registrar()">Registrar-se</a>
+</mat-card>
