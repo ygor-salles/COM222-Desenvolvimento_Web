@@ -1,0 +1,95 @@
+<div class="content homePrincipal">
+    <div class="container" style="max-width: 100%">
+        <div *ngIf="!mostraPedido">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>{{ title }}</h1>
+                    <h3>Cadastrar pedido</h3>
+                </div>
+                <div class="col-md-9" style="text-align: right;">
+                    <button type="button" class="btn btn-success mt-button" (click)="fecharPedido()" [disabled]="!validarPedido()">Fechar Pedido</button>
+                </div>
+            </div>
+            <hr>
+            <form #form="ngForm">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" name="nome" [(ngModel)]="nome">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Endereço</label>
+                            <input type="text" class="form-control" name="endereco" [(ngModel)]="endereco">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Escolha a carne</label>
+                            <select class="custom-select" name="escolhaCarne" [(ngModel)]="escolhaCarne">
+                                <option *ngFor="let carne of opcaoesCarne" [ngValue]="carne">{{ carne.carne }}: {{ carne.preco | currency:'BRL':true }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Peso</label>
+                            <input type="text" class="form-control" name="peso" placeholder="peso em kg" [(ngModel)]="peso">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary mt-button" (click)="incluirItem()" [disabled]="!validarItem()">Incluir
+                            item</button>
+                    </div>
+                </div>
+            </form>
+            <br><br>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome da carne</th>
+                        <th>Peso</th>
+                        <th>Preço total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of itens">
+                        <td>{{ item.nomeCarne }}</td>
+                        <td>{{ item.peso }}</td>
+                        <td>{{ item.precoTotal | currency:'BRL':true }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Total dos Pedidos: </td>
+                        <td style="text-align: center;">{{ valorTotalPedido | currency:'BRL':true }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div *ngIf="mostraPedido">
+            <hr>
+            <h2>{{ pedido.nome }}</h2>
+            <h4>{{ pedido.endereco }}</h4>
+            <ul *ngFor="let item of pedido.item">
+                <li>{{ item.peso }} Kg {{ item.nomeCarne }}  ..........  {{ item.precoTotal | currency:'BRL':true }}</li>
+            </ul>
+            <h6>Total do pedido ..........  {{ valorTotalPedido | currency:'BRL':true }}</h6>
+            <div class="row mb-xlg">
+                <div class="col-md-12" style="text-align: right;">
+                    <button type="button" class="btn btn-primary" (click)="novoPedido()">Novo pedido</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: right;">
+                    <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

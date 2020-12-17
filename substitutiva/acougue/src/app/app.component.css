@@ -1,0 +1,57 @@
+.homePrincipal {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.mb-xlg {
+    margin-bottom: 10px;
+}
+
+.mt-xlg {
+    margin-bottom: 10px;
+}
+
+.mt-ggg {
+    margin-top: 20px;
+}
+
+.mt-button {
+    margin-top: 32px;
+}
+
+hr {
+    border: solid 1px #444;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 50% !important;
+    margin: auto;
+}
+
+th, td {
+    padding: 10px;
+}
+
+thead tr {
+   border-bottom: solid 3px #444; 
+}
+
+tbody tr:hover {
+    background-color: #dedede;
+}
+
+thead tr th, tbody tr td {
+    text-align: center;
+}
+
+tfoot {
+    background-color: #444;
+    color: #fff;
+    font-weight: bold;
+}
+
+.itemRelatorio {
+    border-collapse: collapse;
+    width: 50% !important;
+    margin: auto;
+}
