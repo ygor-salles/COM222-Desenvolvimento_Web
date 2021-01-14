@@ -2,23 +2,23 @@
 
 Contém todo conteúdo da Matéria de COM222 Desenvolvimento WEB - UNIFEI
 
-#Aborda varios conceitos fundamentais, ferramentas e linguagens web, front end e backend. Com maior foco em frontend.
+## Aborda varios conceitos fundamentais, ferramentas e linguagens web, front end e backend. Com maior foco em frontend.
 
-*HTML
-*CSS
-*JavaScript
-*JQuery
+* HTML
+* CSS
+* JavaScript
+* JQuery
 
 FRONTEND:
-*Angular
-*typescritp
+* Angular
+* typescritp
 
 BACKEND:
-*express
-*nodeJS
+* expressJS
+* nodeJS
 
 BANCO DE DADOS:
-*Relacional - MySQL
-*Não Relacional - MongoDB
+* Relacional - MySQL
+* Não Relacional - MongoDB
 
 
